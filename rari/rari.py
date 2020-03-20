@@ -10,11 +10,12 @@ def rari(x, y, dist_x, dist_y):
 
         An implementation of Pinto et. al's ranked adjusted Rand index which is an extension of the adjusted Rand index
         that measures the agreement between two independent clustering solutions while incorporating distances
-        between clusters in each solution. An index of 1 indicates perfect agreement between solutions while and
-        index close to 0 indicates random labeling and distances.
+        between instances/clusters in each solution. An index of 1 indicates perfect agreement between solutions while
+        and index close to 0 indicates random labeling and distances.
 
-        Pinto, F. R., Carriço, J. A., Ramirez, M., & Almeida, J. S. (2007). Ranked Adjusted Rand: integrating distance and partition
-            information in a measure of clustering agreement. BMC bioinformatics, 8(1), 44. https://doi.org/10.1186/1471-2105-8-44
+        Pinto, F. R., Carriço, J. A., Ramirez, M., & Almeida, J. S. (2007). Ranked Adjusted Rand: integrating distance
+            and partition information in a measure of clustering agreement. BMC bioinformatics, 8(1), 44.
+            https://doi.org/10.1186/1471-2105-8-44
 
         Parameters
         ----------
