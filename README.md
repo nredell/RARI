@@ -5,10 +5,16 @@
 [Ranked Adjusted Rand: integrating distance and partition information in a measure of clustering agreement](https://doi.org/10.1186/1471-2105-8-44).
 The ranked adjusted Rand index is an extension of the [adjusted Rand index](https://en.wikipedia.org/wiki/Rand_index)
 that measures the agreement between two independent clustering solutions while incorporating distances
-between instances/clusters from each solution. An index of 1 indicates perfect agreement between solutions while an
-index close to 0 indicates random labeling and distances.
+between instances/clusters from each solution.
 
-The benefit of RARI is in penalizing the adjusted Rand index when a given pair of instances is close together in cluster
+* **RARI = 1:** Perfect agreement between cluster solutions 'A' and 'B'. Identical cluster partitions and equally
+*ranked* relative distances between clusters in cluster solutions 'A' and 'B'.
+
+* **RARI = 0:** No agreement between cluster solutions 'A' and 'B'. Only occurs when, in cluster solution
+'A', all instances are in the same cluster and, in cluster solution 'B', all instances are in their own cluster and all
+clusters are equidistant from each other.
+
+Generally speaking, the benefit of RARI is in penalizing the adjusted Rand index when a given pair of instances is close together in cluster
 solution 'A' and far apart in cluster solution 'B'.
 
 ## Lightning Example
@@ -43,6 +49,15 @@ Out[1]: **.975**
 ``` python
 pip install git+https://github.com/nredell/rari
 ```
+
+## Intuition
+
+Below is Figure 1 from Pinto et. al's article which demonstrates the impact of inter-cluster distances on the RARI
+metric as compared to, say, the ARI.
+
+<p align="center">
+  <img src="tools/figure_1.PNG" width="400px"></img>
+</p>
 
 ## Examples
 
@@ -79,3 +94,11 @@ rari(x, y, dist_x, dist_y)
 ```
 **ARI:** .83
 **RARI:** .89
+
+
+## Implementation Details
+
+At present, inter-cluster distances are based on the euclidean distance between pairs of instances in `data_x` and `data_y`.
+That is to say, even if the input pairwise distance matrices are, for example, cosine and manhattan, the inter-cluster distance ranks
+are still based on euclidean, complete linkage distances. This will be relaxed in the future with support for additional input arguments.
+
