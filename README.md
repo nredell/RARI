@@ -18,6 +18,7 @@ Generally speaking, the benefit of RARI is in penalizing the adjusted Rand index
 solution 'A' and far apart in cluster solution 'B'.
 
 ## Lightning Example
+
 * Below is a comparison of the agreement between hierarchical and k-means clustering solutions on the iris data set. The
 same distance matrix is used to calculate pairwise distances between each iris instance, but this is not a requirement.
 
@@ -95,10 +96,10 @@ rari(x, y, dist_x, dist_y)
 **ARI:** .83
 **RARI:** .89
 
-
 ## Implementation Details
 
 At present, inter-cluster distances are based on the euclidean distance between pairs of instances in `data_x` and `data_y`.
 That is to say, even if the input pairwise distance matrices are, for example, cosine and manhattan, the inter-cluster distance ranks
-are still based on euclidean, complete linkage distances. This will be relaxed in the future with support for additional input arguments.
+are still based on a euclidean, complete linkage measure of these pairwise distances. This will be relaxed in the future with support
+for additional input arguments.
 

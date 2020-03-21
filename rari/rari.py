@@ -14,24 +14,24 @@ def rari(x, y, dist_x, dist_y):
         and index close to 0 indicates random labeling and distances.
 
         Pinto, F. R., Carriço, J. A., Ramirez, M., & Almeida, J. S. (2007). Ranked Adjusted Rand: integrating distance
-            and partition information in a measure of clustering agreement. BMC bioinformatics, 8(1), 44.
+            and partition information in a measure of clustering agreement. BMC Bioinformatics, 8(1), 44.
             https://doi.org/10.1186/1471-2105-8-44
 
         Parameters
         ----------
-        x : np.array
-            A numeric array of cluster membership values with 1 value per instance. Cluster values should start at either
+        x : 1D np.array
+            A numeric vector of cluster membership values with 1 value per instance. Cluster values should start at either
             0 or 1. The number of clusters can differ between 'x' and 'y'; however, len(x) must equal len(y).
 
-        y : np.array
-            A numeric array of cluster membership values with 1 value per instance. Cluster values should start at either
+        y : 1D np.array
+            A numeric vector of cluster membership values with 1 value per instance. Cluster values should start at either
             0 or 1. The number of clusters can differ between 'x' and 'y'; however, len(x) must equal len(y).
 
-        dist_x : A 2-D np.array
+        dist_x : 2D np.array
             A len(x) by len(x) matrix giving the distances between instances in 'x'. The distance metric used to
             create 'dist_x' can be different from that used to create 'dist_y'.
 
-        dist_y : A 2-D np.array
+        dist_y : 2D np.array
             A len(y) by len(y) matrix giving the distances between instances in 'y'. The distance metric used to
             create 'dist_y' can be different from that used to create 'dist_x'.
 
@@ -39,6 +39,13 @@ def rari(x, y, dist_x, dist_y):
         ----------
         rari : float
         """
+    #-------------------------------------------------------------------------
+    assert all([isinstance(x, np.ndarray), isinstance(y, np.ndarray), isinstance(dist_x, np.ndarray),
+                isinstance(dist_y, np.ndarray)]), \
+                "'x', 'y', 'dist_x', and 'dist_y' must all be of type 'numpy.ndarray'."
+    assert x.shape == y.shape, "'x' and 'y' should be 1D numpy arrays--e.g., (100, )--with the same length."
+    assert dist_x.shape == dist_y.shape, "'dist_x' and 'dist_y' should be square matrices--e.g., (100, 100)--with the same dimensions."
+    assert dist_x.shape[0] == dist_x.shape[1] and dist_y.shape[0] == dist_y.shape[1], "'dist_x' and 'dist_y' should be square matrices--e.g., (100, 100)--with the same dimensions."
 
     n_instances = x.size
 
