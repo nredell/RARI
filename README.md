@@ -32,7 +32,7 @@ y = model_2.fit_predict(X)
 dist_x = pairwise_distances(X, metric='euclidean')
 dist_y = pairwise_distances(X, metric='euclidean')
 
-rari(x, y, dist_x, dist_x)
+rari(x, y, dist_x, dist_y)
 ```
 Out[1]: **.975**
 
@@ -46,4 +46,36 @@ pip install git+https://github.com/nredell/rari
 
 ## Examples
 
-TBD
+### Example 1: ARI vs. RARI, Few Clusters, High Agreement
+
+* Results/interpretation TBD
+
+``` python
+import numpy as np
+import pandas as pd
+from sklearn.datasets import make_blobs
+from sklearn.cluster import AgglomerativeClustering, KMeans
+from sklearn.metrics import adjusted_rand_score, pairwise_distances
+from rari import rari
+
+X, y = make_blobs(n_samples=[50, 50, 50], n_features=2, cluster_std=1.0, center_box=(-5.0, 5.0), shuffle=True, random_state=224)
+data = pd.DataFrame(np.hstack([X, y[:, np.newaxis]]), columns=["X1", "X2", "Cluster"])
+
+model_1 = AgglomerativeClustering(n_clusters=3, linkage='ward')
+x = model_1.fit_predict(X)
+
+model_2 = KMeans(n_clusters=3)
+y = model_2.fit_predict(X)
+
+dist_x = pairwise_distances(X, metric='euclidean')
+dist_y = pairwise_distances(X, metric='euclidean')
+```
+
+![](./tools/example_1_plot_1.png) ![](./tools/example_1_plot_2.png) ![](./tools/example_1_plot_3.png)
+
+``` python
+adjusted_rand_score(x, y)
+rari(x, y, dist_x, dist_y)
+```
+**ARI:** .83
+**RARI:** .89
