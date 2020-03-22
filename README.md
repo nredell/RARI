@@ -1,7 +1,7 @@
 
 [![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
-# package::rari <img src="./tools/rari_logo.png" alt="rari logo" align="right" height="138.5" style="display: inline-block;">
+# package.rari <img src="./tools/rari_logo.png" alt="rari logo" align="right" height="138.5" style="display: inline-block;">
 
 `rari` is a Python implementation of Pinto et. al's ranked adjusted Rand index (RARI) from
 [Ranked Adjusted Rand: integrating distance and partition information in a measure of clustering agreement](https://doi.org/10.1186/1471-2105-8-44).
